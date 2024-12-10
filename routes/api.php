@@ -51,20 +51,21 @@ Route::prefix('v1')->group(function () {
          *
          * @group External
          * @authenticated
+         * @queryParam address string Optional address filter for the products. Example: "New York"
          * @response 200 [
          *     { "id": 1, "name": "Product A", "price": 10.99 },
          *     { "id": 2, "name": "Product B", "price": 12.49 }
          * ]
          *
-         * @example bash curl -X GET "https://example.com/api/v1/external/products" -H "Authorization: Bearer YOUR_TOKEN"
-         * @example javascript fetch("https://example.com/api/v1/external/products", {
+         * @example bash curl -X GET "https://example.com/api/v1/external/products?address=New%20York" -H "Authorization: Bearer YOUR_TOKEN"
+         * @example javascript fetch("https://example.com/api/v1/external/products?address=New%20York", {
          *     method: "GET",
          *     headers: { "Authorization": "Bearer YOUR_TOKEN" }
          * })
          * @example python import requests
-         * response = requests.get("https://example.com/api/v1/external/products", headers={"Authorization": "Bearer YOUR_TOKEN"})
+         * response = requests.get("https://example.com/api/v1/external/products?address=New%20York", headers={"Authorization": "Bearer YOUR_TOKEN"})
          * print(response.json())
-         * @example php $ch = curl_init("https://example.com/api/v1/external/products");
+         * @example php $ch = curl_init("https://example.com/api/v1/external/products?address=New%20York");
          * curl_setopt($ch, CURLOPT_HTTPHEADER, ["Authorization: Bearer YOUR_TOKEN"]);
          * curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
          * $response = curl_exec($ch);
@@ -78,4 +79,5 @@ Route::prefix('v1')->group(function () {
             ]);
         });
     });
+
 });

@@ -1,0 +1,47 @@
+name: External
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/external/products
+    metadata:
+      groupName: External
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get Products.'
+      description: 'Retrieve the list of available products.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+              { "id": 1, "name": "Product A", "price": 10.99 },
+              { "id": 2, "name": "Product B", "price": 12.49 }
+          ]
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3DZ6cdgbaE68eVahv54kPf1'
+    controller: null
+    method: null
+    route: null
+    custom: []

@@ -1,0 +1,110 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "https:\/\/staging.bellhopt.com"
+        }
+    ],
+    "info": {
+        "name": "Laravel",
+        "_postman_id": "fa459026-70bb-4363-9eab-a37e10472730",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Authentication",
+            "description": "",
+            "item": [
+                {
+                    "name": "Generate OAuth Token.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/oauth\/token",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/oauth\/token"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"clientId\":\"\\\"12345\\\"\",\"clientSecret\":\"\\\"abcde\\\"\",\"Scopes\":[\"read:products\"]}"
+                        },
+                        "description": "This endpoint generates an OAuth token for clients.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"access_token\": \"abcd1234\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 3600\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "External",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get Products.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/external\/products",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/external\/products"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieve the list of available products."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "[\n    { \"id\": 1, \"name\": \"Product A\", \"price\": 10.99 },\n    { \"id\": 2, \"name\": \"Product B\", \"price\": 12.49 }\n]",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "Authorization",
+                "type": "string"
+            }
+        ]
+    }
+}

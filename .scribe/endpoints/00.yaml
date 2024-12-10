@@ -1,0 +1,79 @@
+name: Authentication
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/oauth/token
+    metadata:
+      groupName: Authentication
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Generate OAuth Token.'
+      description: 'This endpoint generates an OAuth token for clients.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      clientId:
+        name: clientId
+        description: 'The client ID provided to the user.'
+        required: true
+        example: '"12345"'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      clientSecret:
+        name: clientSecret
+        description: 'The client secret key associated with the client ID.'
+        required: true
+        example: '"abcde"'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      Scopes:
+        name: Scopes
+        description: 'scopes for the generated token.'
+        required: false
+        example:
+          - 'read:products'
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      clientId: '"12345"'
+      clientSecret: '"abcde"'
+      Scopes:
+        - 'read:products'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "access_token": "abcd1234",
+            "token_type": "Bearer",
+            "expires_in": 3600
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

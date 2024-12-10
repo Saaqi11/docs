@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'https://staging.bellhopt.com'
+paths:
+  /api/v1/oauth/token:
+    post:
+      summary: 'Generate OAuth Token.'
+      operationId: generateOAuthToken
+      description: 'This endpoint generates an OAuth token for clients.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  access_token: abcd1234
+                  token_type: Bearer
+                  expires_in: 3600
+                properties:
+                  access_token:
+                    type: string
+                    example: abcd1234
+                  token_type:
+                    type: string
+                    example: Bearer
+                  expires_in:
+                    type: integer
+                    example: 3600
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                clientId:
+                  type: string
+                  description: 'The client ID provided to the user.'
+                  example: '"12345"'
+                  nullable: false
+                clientSecret:
+                  type: string
+                  description: 'The client secret key associated with the client ID.'
+                  example: '"abcde"'
+                  nullable: false
+                Scopes:
+                  type: array
+                  description: 'scopes for the generated token.'
+                  example:
+                    - 'read:products'
+                  items:
+                    type: string
+              required:
+                - clientId
+                - clientSecret
+      security: []
+  /api/v1/external/products:
+    get:
+      summary: 'Get Products.'
+      operationId: getProducts
+      description: 'Retrieve the list of available products.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    name: 'Product A'
+                    price: 10.99
+                  -
+                    id: 2
+                    name: 'Product B'
+                    price: 12.49
+      tags:
+        - External
+tags:
+  -
+    name: Authentication
+    description: ''
+  -
+    name: External
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'To authenticate, you need an access token. You can generate one by sending a POST request to the `/api/v1/oauth/generate` endpoint with the required parameters: `clientId`, `clientSecret`, and `scopes`.'
+security:
+  -
+    default: []

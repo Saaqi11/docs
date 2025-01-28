@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
@@ -175,6 +176,55 @@ Route::prefix('v1')->group(function () {
                 ],
                 "price" => "16.89"
             ]);
+        });
+
+        /**
+         * Store an Order.
+         *
+         * This endpoint stores an order with the provided details, including products, address, fees, and delivery time.
+         *
+         * @group External
+         * @authenticated
+         * @bodyParam productData array required List of products in the order. Example: [{"productId": "001", "price": 10.5, "quantity": 2}]
+         * @bodyParam guestNotes string optional Additional notes from the guest. Example: "Leave it at the front door."
+         * @bodyParam alcoholFee number optional Alcohol-related fee for the order. Example: 5.00
+         * @bodyParam address string required The delivery address for the order. Example: "123 Main St, New York, NY"
+         * @bodyParam deliveryTime string required Delivery time for the order. Example: "15:00"
+         * @bodyParam deliveryDate string required Delivery date for the order. Example: "2025-02-01"
+         * @bodyParam guestEmail string required Email of the guest. Example: "guest@example.com"
+         * @bodyParam guestPhoneNumber string required Phone number of the guest. Example: "555-123-4567"
+         * @bodyParam driverFee number optional Fee for the driver. Example: 10.00
+         * @response 200 {
+         *   "status": "Order created successfully",
+         *   "data": {
+         *       orderId: "12345"
+         *   }
+         * }
+         * @response 400 {
+         *   "error": "Invalid input or missing required fields."
+         * }
+         * @response 500 {
+         *   "error": "Server error occurred while processing the order."
+         * }
+         *
+         * @example bash curl -X POST "https://example.com/api/v1/external/order" -d "productData=[{\"productId\":\"001\",\"price\":10.5,\"quantity\":2}]" -d "dob=1990-01-01" -d "idType=passport" -d "address=123 Main St, New York, NY" -d "deliveryTime=15:00" -d "deliveryDate=2025-02-01" -d "guestEmail=guest@example.com" -d "guestPhoneNumber=555-123-4567"
+         * @example javascript fetch("https://example.com/api/v1/external/order", {
+         *     method: "POST",
+         *     headers: { "Authorization": "Bearer YOUR_TOKEN", "Content-Type": "application/json" },
+         *     body: JSON.stringify({
+         *         productData: [{"productId": "001", "price": 10.5, "quantity": 2}],
+         *         dob: "1990-01-01",
+         *         idType: "passport",
+         *         address: "123 Main St, New York, NY",
+         *         deliveryTime: "15:00",
+         *         deliveryDate: "2025-02-01",
+         *         guestEmail: "guest@example.com",
+         *         guestPhoneNumber: "555-123-4567"
+         *     })
+         * })
+         */
+        Route::post('/order', function () {
+
         });
     });
 

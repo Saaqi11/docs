@@ -185,15 +185,16 @@ Route::prefix('v1')->group(function () {
          *
          * @group External
          * @authenticated
-         * @bodyParam productData array required List of products in the order. Example: [{"productId": "001", "price": 10.5, "quantity": 2}]
-         * @bodyParam guestNotes string optional Additional notes from the guest. Example: "Leave it at the front door."
-         * @bodyParam alcoholFee number optional Alcohol-related fee for the order. Example: 5.00
+         * @bodyParam productData array required List of products in the order. Example: [{"_id": "123455788", "name": "Product 1", "size": "1 kg",  "image": "image-url", "price": 10.5, "quantity": 2}]
+         * @bodyParam guestNotes string required Additional notes from the guest. Example: "Leave it at the front door."
+         * @bodyParam alcoholFee number required Alcohol-related fee for the order. Example: 5.00
          * @bodyParam address string required The delivery address for the order. Example: "123 Main St, New York, NY"
          * @bodyParam deliveryTime string required Delivery time for the order. Example: "15:00"
          * @bodyParam deliveryDate string required Delivery date for the order. Example: "2025-02-01"
          * @bodyParam guestEmail string required Email of the guest. Example: "guest@example.com"
          * @bodyParam guestPhoneNumber string required Phone number of the guest. Example: "555-123-4567"
-         * @bodyParam driverFee number optional Fee for the driver. Example: 10.00
+         * @bodyParam driverFee number required Fee for the driver. Example: 10.00
+         * @bodyParam entryInstructions string optional Instructions for entering the building. Example: "Call me when you arrive."
          * @response 200 {
          *   "status": "Order created successfully",
          *   "data": {

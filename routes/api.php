@@ -53,6 +53,7 @@ Route::prefix('v1')->group(function () {
          * @group External
          * @authenticated
          * @queryParam address required string Address filter for the products. Example: "New York"
+         * @queryParam office_id optional string office_id filter for the products. Example: "123"
          * @response 200 {
          *     "productId": "0081060702497",
          *     "upc": "0081060702497",
